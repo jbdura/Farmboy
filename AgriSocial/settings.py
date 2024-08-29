@@ -47,7 +47,12 @@ INSTALLED_APPS = [
 
     'allauth',
     'allauth.account',
+    'allauth.headless',
+
     'allauth.socialaccount',
+    # 'allauth.mfa',
+    # 'allauth.usersessions',
+
     'dj_rest_auth.registration',
 
     'userprofile',
@@ -243,34 +248,27 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS').lower() in ['true', '1', 't']
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
-# EMAIL_HOST = "mail"
-# EMAIL_PORT = 1025
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your-email@gmail.com'
-# EMAIL_HOST_PASSWORD = 'your-email-password'
 
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
-# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 
 
-# HEADLESS_ONLY = False
+HEADLESS_ONLY = True
 
-# HEADLESS_FRONTEND_URLS = {
-#     "account_confirm_email": "/account/verify-email/{key}",
-#     "account_reset_password": "/account/password/reset",
-#     "account_reset_password_from_key": "/account/password/reset/key/{key}",
-#     "account_signup": "/account/signup",
-#     "socialaccount_login_error": "/account/provider/callback",
-# }
+HEADLESS_FRONTEND_URLS = {
+    "account_confirm_email": "/account/verify-email/{key}",
+    "account_reset_password": "/account/password/reset",
+    "account_reset_password_from_key": "/account/password/reset/key/{key}",
+    "account_signup": "/account/signup",
+    "socialaccount_login_error": "/account/provider/callback",
+}
 
 
 SWAGGER_SETTINGS = {
